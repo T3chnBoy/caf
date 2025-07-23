@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contatti - CAF Cocciano</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <style>
+    :root {
+      --main-bg: #f9f9f9;
+      --header-bg: #0073aa;
+      --text-color: #000;
+      --section-bg: #fcf8f0;
+      --card-bg: white;
+      --link-color: #0073aa;
+      --link-hover: hsl(0, 0%, 100%);
+    }
+
+    body.dark-mode {
+      --main-bg: #121212;
+      --header-bg: #1e1e1e;
+      --text-color: #fff;
+      --section-bg: #1a1a1a;
+      --card-bg: #222;
+      --link-color: #4db8ff;
+      --link-hover: #86d3ff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2em;
+      background-color: var(--header-bg);
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    .header img {
+      width: 120px;
+      height: auto;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      font-size: 1.2em;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .dark-toggle {
+      color: white;
+      cursor: pointer;
+      font-size: 1em;
+      margin-left: 1em;
+    }
+
+.contact-container {
+  position: relative;
+  background-image: url('background-contactus.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 3em;
+display: block;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* << aggiungi questa riga */
+}
+
+
+    .contact-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+    }
+
+    body.dark-mode .contact-container::before {
+      opacity: 1;
+    }
+
+    .contact-form {
+      position: relative;
+      background-color: var(--card-bg);
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      z-index: 1;
+    }
+
+    .contact-form h2 {
+      margin-bottom: 1em;
+      color: var(--link-color);
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5em;
+      color: var(--text-color);
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 1em;
+      margin-bottom: 1.5em;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+      font-family: inherit;
+      background-color: white;
+      color: #000;
+    }
+
+    body.dark-mode .contact-form input,
+    body.dark-mode .contact-form textarea {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #666;
+    }
+    .dark-toggle:hover {
+      text-decoration: underline;
+    }
+
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .contact-form button {
+      background-color: var(--link-color);
+      color: white;
+      padding: 0.75em 1.5em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+
+    .contact-form button:hover {
+      background-color: var(--link-hover);
+    }
+
+    .map-container {
+      padding: 3em 1em;
+      text-align: center;
+      background-color: var(--section-bg);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    .info-section {
+      text-align: center;
+      padding: 2em;
+      background-color: var(--section-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .info-section p {
+      font-size: 1.1em;
+      margin: 0.5em 0;
+    }
+
+    .social-icons a {
+      margin: 0 1em;
+      font-size: 2em;
+      text-decoration: none;
+      color: var(--link-color);
+    }
+
+    .social-icons a:hover {
+      color: var(--link-hover);
+    }
+
+    .intro {
+      background-color: var(--main-bg);
+      padding: 2em;
+      display: flex;
+      align-items: center;
+      gap: 2em;
+      flex-wrap: wrap;
+    }
+
+    .intro h1, .intro p {
+      color: var(--text-color);
+    }
+    
+    .footer {
+    background-color: #4A90E2;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;  
+  }
+  body.dark-mode footer {
+    background-color: #111;
+   color: #ccc;
+  }
+
+  body.dark-mode footer a {
+    color: #6fe87c !important;
+  }
+
+body.dark-mode nav a:hover {
+  color: #86d3ff !important;
+}
+
+/* Make the dark mode toggle button look like nav links */
+/* Base toggle button */
+#darkModeToggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 1em;
+  text-decoration: none;
+  padding: 0;
+  font-family: inherit;
+  transition: color 0.3s ease;
+}
+
+/* Light mode hover */
+#darkModeToggle:hover {
+  text-decoration: underline;
+  color: var(--link-hover);
+}
+
+/* Dark mode base */
+body.dark-mode #darkModeToggle {
+  color: var(--text-color) !important;
+}
+
+/* Dark mode hover */
+body.dark-mode #darkModeToggle:hover {
+  text-decoration: underline !important;
+  color: var(--link-hover) !important;
+}
+
+.site-logo {
+  width: 120px;
+  height: auto;
+  transition: filter 0.3s ease;
+}
+
+/* Niente filtro in modalità normale */
+body:not(.dark-mode) .site-logo {
+  filter: none;
+}
+
+/* Filtro per trasformare il colore #3f48cc in bianco */
+body.dark-mode .site-logo {
+  filter: brightness(0) invert(1);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 1em;
+}
+
+.social-icons a {
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  text-align: center;
+  line-height: 80px;
+  font-size: 35px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #fff;
+  color: #262626;
+  transition: color 0.5s;
+  z-index: 1;
+  display: inline-block;
+}
+
+.social-icons a .fab {
+  position: relative;
+  z-index: 3;
+  transition: color 0.5s, transform 0.5s;
+}
+
+.social-icons a:hover .fab {
+  color: #fff;
+  transform: rotateY(360deg);
+}
+
+.social-icons a::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: top 0.5s;
+  z-index: 2;
+  background: #f00; /* fallback */
+}
+
+.social-icons a:hover::before {
+  top: 0;
+}
+
+/* Facebook color */
+.social-icons a[href*="facebook"]::before {
+  background: #3b5999;
+}
+
+/* Instagram color */
+.social-icons a[href*="instagram"]::before {
+  background: #E4405F;
+}
+
+/* WhatsApp color */
+.social-icons a[href*="wa.me"]::before,
+.social-icons a[href*="whatsapp"]::before {
+  background: #25D366;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- Intro Section -->
+  <section class="intro">
+   <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo"></a>
+    <div>
+      <h1 style="margin: 0;">Conttataci</h1>
+      <p style="margin: 0.5em 0 1em;">Per qualsiasi informazione o per fissare un appuntamento, compila il modulo sottostante o scrivici direttamente.</p>
+    </div>
+  </section>
+
+  <!-- Navbar -->
+  <header style="background: var(--header-bg); padding: 1em 2em; display: flex; justify-content: space-between; align-items: center; color: white;">
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+      <div style="font-size: 1.4em; font-weight: bold; cursor: pointer;">CAF Cocciano</div>
+    </a>
+    <nav style="display: flex; align-items: center;">
+      <a href="index.html">Home</a>
+      <a href="chi-siamo.html">Chi Siamo</a>
+      <a href="servizi.html">Servizi</a>
+      <a href="contatti.html">Contatti</a>
+      <a href="faq.html">FAQ</a>
+      <a href="docs-necessari.html">Documenti Necessari</a>
+      <button id="darkModeToggle" aria-label="Toggle dark mode"style="background:none; border:none; color:white; cursor:pointer; font-size:1em; margin-left:1em;"">
+          <span id="modeIcon">🌙</span><span id="modeText">Dark Mode</span>
+        </button>
+    </nav>
+
+  </header>
+
+  <!-- Contact Form -->
+  <section class="contact-container">
+    <form class="contact-form" action="https://formspree.io/f/meokvzek" method="POST">
+      <h2>Modulo di Contatto</h2>
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" required placeholder="Il tuo nome" />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="La tua email" />
+      <label for="message">Messaggio</label>
+      <textarea id="message" name="message" rows="6" required placeholder="Il tuo messaggio"></textarea>
+      <button type="submit">Invia</button>
+    </form>
+  </section>
+
+  <!-- Map -->
+  <section class="map-container">
+    <h2>Dove siamo</h2>
+    <p>Ci trovi qui: Via dei Quintili, 20, Frascati (RM)</p>
+    <iframe src="https://www.google.com/maps?q=Via+dei+Quintili,+20,+Frascati+(RM)&output=embed" loading="lazy"></iframe>
+  </section>
+
+  <!-- Info -->
+  <section class="info-section">
+    <h2>Contatti diretti</h2>
+    <p>Email: <a href="mailto:info@cafcocciano.it">cafcocciano@gmail.com</a></p>
+    <p>Telefono: <a href="tel:+393801889603">+39 380 188 9603</a></p>
+<div class="social-icons">
+  <a href="https://wa.me/393801889603" target="_blank" title="WhatsApp" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.facebook.com/cafcocciano" target="_blank" title="Facebook" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.instagram.com/centroserviziroma?utm_source=ig_web_button_share_sheet" target="_blank" title="Instagram" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <p>&copy; 2025 Tutti i diritti riservati</p>
+      <p><a href="index.html">Home</a> | <a href="servizi.html">Servizi</a> | <a href="contattaci.html">Contattaci</a></p>
+      <p>Seguici su: 
+        <a href="#">Facebook</a> |
+        <a href="https://www.instagram.com/centroserviziroma?utm_source=ig_web_button_share_sheet">Instagram</a>
+      </p>
+    </div>
+  </footer>
+
+<script>
+  function applyDarkModePreference() {
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    const body = document.body;
+    const modeIcon = document.getElementById('modeIcon');
+    const modeText = document.getElementById('modeText');
+
+    if (isDark) {
+      body.classList.add('dark-mode');
+      if (modeIcon) modeIcon.textContent = '☀️';
+      if (modeText) modeText.textContent = 'Light Mode';
+    } else {
+      body.classList.remove('dark-mode');
+      if (modeIcon) modeIcon.textContent = '🌙';
+      if (modeText) modeText.textContent = 'Dark Mode';
+    }
+  }
+
+  function toggleDarkMode() {
+    const body = document.body;
+    const isDark = body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+
+    const modeIcon = document.getElementById('modeIcon');
+    const modeText = document.getElementById('modeText');
+    if (modeIcon) modeIcon.textContent = isDark ? '☀️' : '🌙';
+    if (modeText) modeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applyDarkModePreference();
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) toggle.addEventListener('click', toggleDarkMode);
+  });
+</script>
+
+</body>
+</html>

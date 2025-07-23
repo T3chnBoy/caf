@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servizi - CAF Cocciano</title>
+  <style>
+    :root {
+      --bg-light: #f9f9f9;
+      --bg-dark: #121212;
+      --header-bg-light: #0073aa;
+      --header-bg-dark: #1e1e1e;
+      --text-light: #000;
+      --text-dark: #fff;
+      --card-bg-light: #fff;
+      --card-bg-dark: #222;
+    }
+        body.dark-mode {
+      --main-bg: #121212;
+      --header-bg: #1e1e1e;
+      --text-color: #fff;
+      --section-bg: #1a1a1a;
+      --card-bg: #222;
+      --link-color: #4db8ff;
+      --link-hover: #86d3ff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2em;
+      background-color: var(--header-bg-light);
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    body.dark-mode .header {
+      background-color: var(--header-bg-dark);
+    }
+
+    .header img {
+      width: 120px;
+      height: auto;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      font-size: 1.2em;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 2em;
+      padding: 2em;
+      background-color: var(--bg-light);
+      flex-wrap: wrap;
+    }
+
+    body.dark-mode .hero {
+      background-color: var(--bg-dark);
+    }
+
+    .hero img {
+      width: 120px;
+      height: auto;
+    }
+
+    .hero h1 {
+      margin: 0;
+    }
+
+    .container {
+      flex-grow: 1;
+      max-width: auto;
+      margin: 2em auto;
+      padding: 0 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .cards__item {
+      height: 400px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(45deg, #5ac8fa, #007aff);
+    }
+
+    .card__frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .card__picture {
+      margin-bottom: 12px;
+      filter: invert(1);
+    }
+
+    .card__title {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card__overlay {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      background-image: linear-gradient(45deg, #5ac8fa, #007aff);
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    .card__overlay::before {
+      content: "Info";
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #000000;
+    }
+
+    .card__overlay:hover,
+    .card__overlay:focus {
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: none;
+      border-radius: 0;
+      opacity: 0.9;
+    }
+
+    .card__overlay:hover::before,
+    .card__overlay:focus::before {
+      content: none;
+    }
+
+    .card__content {
+      z-index: 1;
+      padding: 20px;
+      line-height: 1.4;
+      opacity: 0;
+      visibility: hidden;
+      box-sizing: border-box;
+      pointer-events: none;
+      transition: 0s;
+      color: white;
+    }
+
+    .card__overlay:hover ~ .card__content,
+    .card__overlay:focus ~ .card__content {
+      opacity: 1;
+      visibility: visible;
+      transition: 0.2s 0.3s;
+    }
+
+    .card__content h2 {
+      margin: 0 0 16px;
+    }
+
+    footer {
+      background-color: #4A90E2;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    body.dark-mode footer {
+      background-color: #111;
+      color: #ccc;
+    }
+
+    body.dark-mode footer a {
+      color: #6fe87c !important;
+    }
+
+    .dark-toggle {
+      cursor: pointer;
+      margin-left: 1em;
+    }
+
+    .dark-toggle:hover {
+      text-decoration: underline;
+    }
+    body.dark-mode .card {
+  background-image: linear-gradient(45deg, #333, #222);
+}
+
+body.dark-mode .card__title {
+  color: #fff;
+}
+
+body.dark-mode .card__content {
+  color: #fff;
+}
+
+body.dark-mode .card__overlay::before {
+  color: #000;
+}
+
+body.dark-mode .card__overlay {
+  background-image: linear-gradient(45deg, #555, #333);
+}
+
+body.dark-mode .card__overlay::before {
+  color: #ffffff;
+}
+body.dark-mode nav a:hover {
+  color: #86d3ff !important;
+}
+
+/* Base toggle button */
+#darkModeToggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 1em;
+  text-decoration: none;
+  padding: 0;
+  font-family: inherit;
+  transition: color 0.3s ease;
+}
+
+/* Light mode hover */
+#darkModeToggle:hover {
+  text-decoration: underline;
+  color: var(--link-hover);
+}
+
+/* Dark mode base */
+body.dark-mode #darkModeToggle {
+  color: var(--text-color) !important;
+}
+
+/* Dark mode hover */
+body.dark-mode #darkModeToggle:hover {
+  text-decoration: underline !important;
+  color: var(--link-hover) !important;
+}
+.site-logo {
+  width: 120px;
+  height: auto;
+  transition: filter 0.3s ease;
+}
+
+/* Niente filtro in modalità normale */
+body:not(.dark-mode) .site-logo {
+  filter: none;
+}
+
+/* Filtro per trasformare il colore #3f48cc in bianco */
+body.dark-mode .site-logo {
+  filter: brightness(0) invert(1);
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Header con logo e intro -->
+  <section class="hero">
+   <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo"></a>
+    <div>
+      <h1>I nostri servizi</h1>
+      <p>Offriamo assistenza fiscale, pratiche 730, ISEE, successioni e molto altro.</p>
+    </div>
+  </section>
+
+  <!-- Navbar -->
+  <header class="header">
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+      <div style="font-size: 1.4em; font-weight: bold; cursor: pointer;">
+        CAF Cocciano
+      </div>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="chi-siamo.html">Chi Siamo</a>
+      <a href="servizi.html">Servizi</a>
+      <a href="contatti.html">Contatti</a>
+      <a href="faq.html">FAQ</a>
+      <a href="docs-necessari.html">Documenti Necessari</a>
+      <button id="darkModeToggle" aria-label="Toggle dark mode"style="background:none; border:none; color:white; cursor:pointer; font-size:1em; margin-left:1em;"">
+          <span id="modeIcon">🌙</span><span id="modeText">Dark Mode</span>
+        </button>
+    </nav>
+  </header>
+
+   <!-- Sezione Card -->
+  <div class="container">
+     <!-- Inserimento delle 18 card -->
+<ul class="cards">
+  <!-- 730 / Redditi -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/730.png" alt="730 Dichiarazione" width="120">
+      </div>
+      <h2 class="card__title">730 / Redditi</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>730 / Dichiarazione dei Redditi</h2>
+      <p>Calcolo e invio della dichiarazione dei redditi.<br><strong>Serve:</strong> Carta d’identità, codice fiscale, CU, spese mediche/scolastiche/mutuo.</p>
+    </div>
+  </li>
+
+  <!-- ISEE -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/ISEE.png" alt="ISEE Indicatore" width="120">
+      </div>
+      <h2 class="card__title">ISEE</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>ISEE (Indicatore Situazione Economica Equivalente)</h2>
+      <p>Serve per ottenere agevolazioni (bonus, università, ecc).<br><strong>Serve:</strong> Documenti del nucleo familiare, saldo/giacenza media, redditi, contratto affitto.</p>
+    </div>
+  </li>
+
+  <!-- Assegno Unico -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Assegno_Unico.png" alt="Assegno Unico" width="120">
+      </div>
+      <h2 class="card__title">Assegno Unico</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Assegno Unico Universale per Figli a Carico</h2>
+      <p>Contributo mensile per figli a carico.<br><strong>Serve:</strong> ISEE aggiornato, codici fiscali genitori e figli, IBAN.</p>
+    </div>
+  </li>
+
+  <!-- IMU / TASI -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/IMU_TASI.png" alt="IMU TASI" width="120">
+      </div>
+      <h2 class="card__title">IMU / TASI</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>IMU / TASI</h2>
+      <p>Calcolo e F24 per imposte su immobili (escluse prime case).<br><strong>Serve:</strong> Visura catastale, atto di proprietà, rendita, detrazioni.</p>
+    </div>
+  </li>
+
+  <!-- Modello RED -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Modello_Red.png" alt="Modello RED" width="120">
+      </div>
+      <h2 class="card__title">Modello RED</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Modello RED</h2>
+      <p>Dichiarazione per pensionati con reddito correlato a prestazioni.<br><strong>Serve:</strong> CU, redditi affitti/interessi.</p>
+    </div>
+  </li>
+
+  <!-- Pensione -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Pensione.png" alt="Pensione" width="120">
+      </div>
+      <h2 class="card__title">Pensione</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Pensione di Cittadinanza / Reversibilità / Anticipata</h2>
+      <p>Supporto per richieste pensionistiche.<br><strong>Serve:</strong> Estratto contributivo, documenti anagrafici, stato civile, ISEE.</p>
+    </div>
+  </li>
+
+  <!-- Bonus Affitto -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Buonus_Affitto.png" alt="Bonus Affitto" width="120">
+      </div>
+      <h2 class="card__title">Bonus Affitto</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Bonus Affitto Giovani / Contributo Affitto</h2>
+      <p>Aiuto per pagare l’affitto.<br><strong>Serve:</strong> Contratto registrato, ISEE, ricevute affitto.</p>
+    </div>
+  </li>
+
+  <!-- Colf / Badanti -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Colf_Badanti.png" alt="Colf Badanti" width="120">
+      </div>
+      <h2 class="card__title">Colf / Badanti</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Colf e Badanti</h2>
+      <p>Assunzione, contributi, buste paga.<br><strong>Serve:</strong> Dati datore/lavoratore, orario, contratto, IBAN.</p>
+    </div>
+  </li>
+
+  <!-- Cittadinanza -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Cittadinanza.png" alt="Cittadinanza" width="120">
+      </div>
+      <h2 class="card__title">Cittadinanza</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Cittadinanza Italiana / Ricongiungimento Familiare</h2>
+      <p>Assistenza per cittadinanza o unione familiare.<br><strong>Serve:</strong> Permesso soggiorno, certificati, residenza, ISEE, SPID.</p>
+    </div>
+  </li>
+
+  <!-- Invalidità -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Invalidita.png" alt="Invalidità" width="120">
+      </div>
+      <h2 class="card__title">Invalidità</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Invalidità Civile / Accompagnamento</h2>
+      <p>Domande per riconoscimento invalidità e benefici.<br><strong>Serve:</strong> Referti medici, tessera sanitaria, certificato medico.</p>
+    </div>
+  </li>
+
+  <!-- SPID / PEC -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/SPID.png" alt="SPID PEC" width="120">
+      </div>
+      <h2 class="card__title">SPID / PEC</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>SPID / PEC / Firma Digitale</h2>
+      <p>Attivazione identità digitali.<br><strong>Serve:</strong> Documento, codice fiscale, email, smartphone.</p>
+    </div>
+  </li>
+
+  <!-- Successioni -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Successioni.png" alt="Successioni" width="120">
+      </div>
+      <h2 class="card__title">Successioni</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Successioni</h2>
+      <p>Pratiche ereditarie post-decesso.<br><strong>Serve:</strong> Atto di morte, visure, elenco beni, dati eredi, testamento.</p>
+    </div>
+  </li>
+
+  <!-- Bonus Cultura -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Buonus_cultura.png" alt="Bonus Cultura" width="120">
+      </div>
+      <h2 class="card__title">Bonus Cultura</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Bonus Cultura 18app / Carta del Docente</h2>
+      <p>Supporto registrazione e uso bonus cultura.<br><strong>Serve:</strong> SPID, codice fiscale, documenti spese ammesse.</p>
+    </div>
+  </li>
+
+  <!-- Partite IVA -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Partita_IVA.png" alt="Partita IVA" width="120">
+      </div>
+      <h2 class="card__title">Partite IVA</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Assistenza Contabile per Partite IVA</h2>
+      <p>Apertura, fatturazione elettronica, dichiarazione redditi.<br><strong>Serve:</strong> Documento, codice fiscale, PEC, info attività.</p>
+    </div>
+  </li>
+
+  <!-- NASpI -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/NASpI.png" alt="NASpI" width="120">
+      </div>
+      <h2 class="card__title">NASpI</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Disoccupazione NASpI</h2>
+      <p>Richiesta dell’indennità di disoccupazione.<br><strong>Serve:</strong> Documento, codice fiscale, CU lavoro, IBAN.</p>
+    </div>
+  </li>
+
+  <!-- Estratto Contributivo -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Estratto_Contributivo.png" alt="Estratto Contributivo" width="120">
+      </div>
+      <h2 class="card__title">Estratto Contributivo</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Estratto Contributivo INPS</h2>
+      <p>Verifica dei contributi versati.<br><strong>Serve:</strong> Documento, codice fiscale, credenziali INPS.</p>
+    </div>
+  </li>
+
+  <!-- Procure -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Procure.png" alt="Procure" width="120">
+      </div>
+      <h2 class="card__title">Procure</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Procure e Delega di Servizi</h2>
+      <p>Redazione e registrazione procure.<br><strong>Serve:</strong> Documento, codice fiscale, dati delegante/delegato, atti.</p>
+    </div>
+  </li>
+
+  <!-- Visure Catastali -->
+  <li class="card cards__item">
+    <div class="card__frame">
+      <div class="card__picture">
+        <img src="Service-icons/Visure_Catastali.png" alt="Visure Catastali" width="120">
+      </div>
+      <h2 class="card__title">Visure Catastali</h2>
+    </div>
+    <div class="card__overlay"></div>
+    <div class="card__content">
+      <h2>Visure e Planimetrie Catastali</h2>
+      <p>Richiesta visure e planimetrie immobili.<br><strong>Serve:</strong> Dati catastali, documento identità.</p>
+    </div>
+  </li>
+</ul>
+
+
+
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <p>&copy; 2025 Tutti i diritti riservati</p>
+      <p>
+        <a href="index.html">Home</a> |
+        <a href="servizi.html">Servizi</a> |
+        <a href="contattaci.html">Contattaci</a>
+      </p>
+      <p>
+        Seguici su:
+        <a href="#">Facebook</a> |
+        <a href="https://www.instagram.com/centroserviziroma?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
+      </p>
+    </div>
+  </footer>
+
+<script>
+  function applyDarkModePreference() {
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    const body = document.body;
+    const modeIcon = document.getElementById('modeIcon');
+    const modeText = document.getElementById('modeText');
+
+    if (isDark) {
+      body.classList.add('dark-mode');
+      if (modeIcon) modeIcon.textContent = '☀️';
+      if (modeText) modeText.textContent = 'Light Mode';
+    } else {
+      body.classList.remove('dark-mode');
+      if (modeIcon) modeIcon.textContent = '🌙';
+      if (modeText) modeText.textContent = 'Dark Mode';
+    }
+  }
+
+  function toggleDarkMode() {
+    const body = document.body;
+    const isDark = body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+
+    const modeIcon = document.getElementById('modeIcon');
+    const modeText = document.getElementById('modeText');
+    if (modeIcon) modeIcon.textContent = isDark ? '☀️' : '🌙';
+    if (modeText) modeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applyDarkModePreference();
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) toggle.addEventListener('click', toggleDarkMode);
+  });
+</script>
+
+
+</body>
+</html>

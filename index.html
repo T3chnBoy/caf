@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAF Cocciano</title>
+
+  <style>
+    :root {
+      --main-bg: #f9f9f9;
+      --header-bg: #0073aa;
+      --text-color: #000;
+      --section-bg: #fcf8f0;
+      --card-bg: white;
+      --link-color: #0073aa;
+      --link-hover: #ffffff;
+    }
+
+    body.dark-mode {
+      --main-bg: #121212;
+      --header-bg: #1e1e1e;
+      --text-color: #fff;
+      --section-bg: #1a1a1a;
+      --card-bg: #222;
+      --link-color: #4db8ff;
+      --link-hover: #86d3ff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2em;
+      background-color: var(--header-bg);
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    .header img {
+      width: 120px;
+      height: auto;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav {
+      font-size: 1.2em;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Evidenziatore */
+    .highlight {
+      background-color: rgba(0, 115, 170, 0.3);
+      padding: 0.1em 0.2em;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+
+    /* Hero section */
+    .hero {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 6em 2em;
+      text-align: center;
+      color: white;
+      height: 50vh;
+    }
+
+    /* Slider */
+    .slider-container {
+      overflow: hidden;
+      width: 100%;
+      background: #f1f1f1;
+    }
+
+    .slider-track {
+      display: flex;
+      animation: scroll 15s linear infinite;
+    }
+
+    .slider-item {
+      flex: 0 0 auto;
+      padding: 2em;
+      text-align: center;
+      min-width: 200px;
+      font-weight: bold;
+      color: #0073aa;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .news-article {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.5em 1.2em;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      cursor: default;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+    }
+
+    .news-article:hover {
+      box-shadow: 0 12px 25px rgba(0,115,170,0.4);
+      transform: translateY(-5px);
+    }
+
+    .news-article.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .news-article h3 {
+      margin-top: 0;
+      margin-bottom: 0.5em;
+      color: var(--link-color);
+      font-weight: 700;
+      font-size: 1.25em;
+    }
+
+    .news-article p {
+      color: var(--text-color);
+      line-height: 1.4;
+      margin-bottom: 0.8em;
+    }
+
+    .news-article small {
+      color: #777;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+
+    /* Link colors */
+    a {
+      color: var(--link-color);
+    }
+    a:hover {
+      color: var(--link-hover);
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #4A90E2;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+    body.dark-mode footer {
+      background-color: #111;
+      color: #ccc;
+    }
+    body.dark-mode footer a {
+      color: #6fe87c !important;
+    }
+    
+
+    /* Additional dark mode adjustments for elements if needed */
+    .slider-container {
+      background: var(--section-bg);
+    }
+
+    .hero {
+  position: relative;
+  z-index: 0;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* overlay nero semitrasparente */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1; /* dietro il contenuto */
+}
+
+body.dark-mode .hero::before {
+  opacity: 1; /* overlay visibile in dark mode */
+}
+
+.hero a {
+  padding: 0.7em 1.2em;
+  text-decoration: none;
+  margin: 0 0.5em;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Bottoni "Scopri i servizi" e "Prenota ora" */
+a.btn.servizi {
+  background-color: white !important;
+  color: #111 !important;
+  border: none !important;
+}
+
+a.btn.prenota {
+  background-color: #0073aa !important;
+  color: white !important;
+  border: none !important;
+}
+
+/* Dark mode */
+body.dark-mode a.btn.servizi {
+  background-color: #333 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode a.btn.prenota {
+  background-color: #111 !important;
+  color: #ffffff !important;
+}
+
+/* Base toggle button */
+#darkModeToggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 1em;
+  text-decoration: none;
+  padding: 0;
+  font-family: inherit;
+  transition: color 0.3s ease;
+}
+
+/* Light mode hover */
+#darkModeToggle:hover {
+  text-decoration: underline;
+  color: var(--link-hover);
+}
+
+/* Dark mode base */
+body.dark-mode #darkModeToggle {
+  color: var(--text-color) !important;
+}
+
+/* Dark mode hover */
+body.dark-mode #darkModeToggle:hover {
+  text-decoration: underline !important;
+  color: var(--link-hover) !important;
+}
+
+.site-logo {
+  width: 120px;
+  height: auto;
+  transition: filter 0.3s ease;
+}
+
+/* Niente filtro in modalità normale */
+body:not(.dark-mode) .site-logo {
+  filter: none;
+}
+
+/* Filtro per trasformare il colore #3f48cc in bianco */
+body.dark-mode .site-logo {
+  filter: brightness(0) invert(1);
+}
+
+
+  </style>
+
+  <!-- Header con logo e intro -->
+  <section style="display: flex; align-items: center; gap: 2em; padding: 2em; background-color: var(--main-bg); flex-wrap: wrap;">
+   <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo"></a>
+    <div>
+      <h1 style="margin: 0; color: var(--text-color);">Benvenuto al CAF Cocciano</h1>
+      <p style="margin: 0.5em 0 1em; color: var(--text-color);">Offriamo assistenza fiscale, pratiche 730, ISEE, successioni e molto altro.</p>
+    </div>
+  </section>
+
+  <!-- Navbar -->
+  <header style="background: var(--header-bg); padding: 1em 2em; display: flex; justify-content: space-between; align-items: center; color: white;">
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+      <div style="font-size: 1.4em; font-weight: bold; cursor: pointer;">
+        CAF Cocciano
+      </div>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="chi-siamo.html">Chi Siamo</a>
+      <a href="servizi.html">Servizi</a>
+      <a href="contatti.html">Contatti</a>
+      <a href="faq.html">FAQ</a>
+      <a href="docs-necessari.html">Documenti Necessari</a>
+      <button id="darkModeToggle" aria-label="Toggle dark mode"style="background:none; border:none; color:white; cursor:pointer; font-size:1em; margin-left:1em;"">
+          <span id="modeIcon">🌙</span><span id="modeText">Dark Mode</span>
+        </button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 style="font-size: 2.5em; margin-bottom: 0.5em;">
+      <span class="highlight">CAF Cocciano</span>
+    </h1>
+    <p style="font-size: 1.2em; margin-bottom: 1em;">
+      <span class="highlight">Il tuo punto di riferimento per assistenza fiscale</span>
+    </p>
+    <a href="servizi.html" class="btn servizi" style="background : white; color: #0073aa; padding: 0.7em 1.2em; text-decoration: none; margin: 0 0.5em; border-radius: 5px;">Scopri i servizi</a>
+    <a href="contatti.html" class="btn prenota" style="background: #0073aa; color: white; padding: 0.7em 1.2em; text-decoration: none; margin: 0 0.5em; border-radius: 5px;">Prenota ora</a>
+	
+	<!-- Sezione Orari -->
+		<section style="text-align: center; padding: 3em 1em;">
+   		 <h2 style="font-size: 2.5em; margin-bottom: 0.5em;">
+  	  <span class="highlight">I nostri orari</span>
+  	</h2>
+    	<p style="font-size: 1.2em; margin-bottom: 1em;">
+   		 <span class="highlight">Lunedì - Venerdì: 9:00 - 12:30 / 15:00 - 18:00</span>
+  	</p>
+    	<p style="font-size: 1.2em; margin-bottom: 1em;">
+ 	   <span class="highlight">Sabato - Domenica: Chiuso</span>
+  	</p>
+</section>
+
+  </section>
+
+  <!-- Slider contenuti -->
+  <div class="slider-container">
+    <div class="slider-track">
+      <div class="slider-item">🧾 730</div>
+      <div class="slider-item">📄 ISEE</div>
+      <div class="slider-item">🏠 Successioni</div>
+      <div class="slider-item">👨‍👩‍👧‍👦 Assegni familiari</div>
+      <div class="slider-item">📚 Bonus scuola</div>
+      <div class="slider-item">💼 RED/INVCIV</div>
+      <div class="slider-item">🧾 730</div>
+      <div class="slider-item">📄 ISEE</div>
+      <div class="slider-item">🏠 Successioni</div>
+    </div>
+  </div>
+
+  <section id="news-section" style="max-width: 1200px; margin: 3em auto; padding: 0 1em;">
+    <h2 style="color: var(--link-color); border-bottom: 3px solid var(--link-color); display: inline-block; padding-bottom: 0.3em; margin-bottom: 1em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+      Ultime News
+    </h2>
+    <div id="news-container" style="display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 1.5em;"></div>
+    <div style="text-align: center; margin-top: 2em;">
+      <button id="load-more-btn" style="
+        background-color: var(--link-color); 
+        color: white; 
+        border: none; 
+        padding: 0.75em 2em; 
+        font-size: 1em; 
+        border-radius: 25px; 
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,115,170,0.4);
+        transition: background-color 0.3s ease;
+      ">
+        Carica altre news
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <p>&copy; 2025 Tutti i diritti riservati</p>
+      <p><a href="index.html" style="text-decoration:none;">Home</a> | <a href="servizi.html" style="text-decoration:none;">Servizi</a> | <a href="contattaci.html" style="text-decoration:none;">Contattaci</a></p>
+      <p>Seguici su: 
+        <a href="#" style="text-decoration:none;">Facebook</a> |
+        <a href="https://www.instagram.com/centroserviziroma?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="text-decoration:none;">Instagram</a> |
+      </p>
+    </div>
+  </footer>
+
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+</script>
+
+<script>
+  const news = [
+    { title: "Apertura nuova sede a Cocciano", content: "Da maggio 2025 abbiamo inaugurato una nuova sede per offrire assistenza ancora più capillare e vicina a te.", date: "20 Maggio 2025" },
+    { title: "Proroga scadenza 730", content: "La scadenza per la presentazione del modello 730 è stata prorogata al 30 giugno 2025.", date: "15 Maggio 2025" },
+    { title: "Novità bonus fiscale 2025", content: "Scopri i nuovi bonus fiscali introdotti quest’anno per famiglie e lavoratori.", date: "10 Maggio 2025" },
+    { title: "Orari estivi", content: "Durante i mesi estivi, i nostri uffici avranno orari prolungati il martedì e giovedì.", date: "5 Maggio 2025" },
+    { title: "Nuovi servizi online", content: "Ora puoi prenotare consulenze e inviare documenti direttamente dal nostro sito.", date: "1 Maggio 2025" },
+    { title: "Campagna 730 2025", content: "Partita la campagna per la gestione dei 730: affrettati a prenotare il tuo appuntamento.", date: "28 Aprile 2025" },
+    { title: "Evento informativo gratuito", content: "Partecipa al nostro evento gratuito per capire come compilare il modello RED.", date: "25 Aprile 2025" },
+    { title: "Successo assistenza online", content: "Abbiamo raggiunto 500 pratiche gestite completamente online, grazie a voi!", date: "20 Aprile 2025" },
+  ];
+
+  const container = document.getElementById('news-container');
+  const loadBtn = document.getElementById('load-more-btn');
+
+  const itemsPerPage = 3;
+  let currentPage = 0;
+
+  function createArticle(item) {
+    const article = document.createElement('article');
+    article.classList.add('news-article');
+
+    article.innerHTML = `
+      <h3>${item.title}</h3>
+      <p>${item.content}</p>
+      <small>${item.date}</small>
+    `;
+
+    return article;
+  }
+
+  function showArticles() {
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    const slice = news.slice(start, end);
+
+    slice.forEach(item => {
+      const article = createArticle(item);
+      container.appendChild(article);
+      setTimeout(() => article.classList.add('show'), 100);
+    });
+
+    currentPage++;
+
+    if (currentPage * itemsPerPage >= news.length) {
+      loadBtn.style.display = 'none';
+    }
+  }
+
+  loadBtn.addEventListener('click', showArticles);
+
+  window.onload = () => {
+    showArticles();
+
+    window.addEventListener('scroll', () => {
+      const articles = document.querySelectorAll('.news-article:not(.show)');
+      articles.forEach(article => {
+        const rect = article.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          article.classList.add('show');
+        }
+      });
+    });
+  };
+</script>
+
+<script>
+  // Lista immagini da far girare
+  const heroImages = [
+    'background1.jpg',
+    'background2.jpg',
+    'background3.jpg'
+  ];
+
+  let currentHeroIndex = 0;
+  const heroSection = document.querySelector('.hero');
+
+  function changeHeroBackground() {
+    heroSection.style.backgroundImage = `url('${heroImages[currentHeroIndex]}')`;
+    currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+  }
+
+  // Imposta subito la prima immagine
+  changeHeroBackground();
+
+  // Cambia immagine ogni 5 secondi
+  setInterval(changeHeroBackground, 5000);
+</script>
+
+<script>
+  function applyDarkModePreference() {
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    const body = document.body;
+    const modeIcon = document.getElementById('modeIcon');
+    const modeText = document.getElementById('modeText');
+
+    if (isDark) {
+      body.classList.add('dark-mode');
+      if (modeIcon) modeIcon.textContent = '☀️';
+      if (modeText) modeText.textContent = 'Light Mode';
+    } else {
+      body.classList.remove('dark-mode');
+      if (modeIcon) modeIcon.textContent = '🌙';
+      if (modeText) modeText.textContent = 'Dark Mode';
+    }
+  }
+
+  function toggleDarkMode() {
+    const body = document.body;
+    const isDark = body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+
+    const modeIcon = document.getElementById('modeIcon');
+    const modeText = document.getElementById('modeText');
+    if (modeIcon) modeIcon.textContent = isDark ? '☀️' : '🌙';
+    if (modeText) modeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    applyDarkModePreference();
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) toggle.addEventListener('click', toggleDarkMode);
+  });
+</script>
+
+</body>
+</html>
