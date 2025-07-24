@@ -293,7 +293,7 @@ body.dark-mode .site-logo {
   height: 80px;
   background-color: #fff;
   text-align: center;
-  line-height: 80px;
+  /* rimuovo line-height per flex centering */
   font-size: 35px;
   border-radius: 50%;
   position: relative;
@@ -302,8 +302,27 @@ body.dark-mode .site-logo {
   color: #262626;
   transition: color 0.5s;
   z-index: 1;
-  display: inline-block;
+
+  display: flex;               /* FLEX per centratura */
+  justify-content: center;
+  align-items: center;
+  line-height: normal;         /* rimuovo line-height che può sballare */
 }
+
+@media (max-width: 500px) {
+  .social-icons a {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+
+    /* mantengo sempre flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: normal;
+  }
+}
+
 
 .social-icons a .fab {
   position: relative;
@@ -347,16 +366,6 @@ body.dark-mode .site-logo {
 .social-icons a[href*="whatsapp"]::before {
   background: #25D366;
 }
-
-@media (max-width: 500px) {
-  .social-icons a {
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    font-size: 28px;
-  }
-}
-
 
 .navbar-toggler-icon {
   filter: invert(1);
