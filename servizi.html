@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Servizi - CAF Cocciano</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
   <style>
     :root {
       --bg-light: #f9f9f9;
@@ -15,7 +19,7 @@
       --card-bg-light: #fff;
       --card-bg-dark: #222;
     }
-        body.dark-mode {
+    body.dark-mode {
       --main-bg: #121212;
       --header-bg: #1e1e1e;
       --text-color: #fff;
@@ -24,7 +28,6 @@
       --link-color: #4db8ff;
       --link-hover: #86d3ff;
     }
-
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -32,12 +35,10 @@
       background-color: var(--bg-light);
       color: var(--text-light);
     }
-
     body.dark-mode {
       background-color: var(--bg-dark);
       color: var(--text-dark);
     }
-
     .header {
       display: flex;
       align-items: center;
@@ -47,35 +48,14 @@
       color: white;
       flex-wrap: wrap;
     }
-
     body.dark-mode .header {
       background-color: var(--header-bg-dark);
     }
-
-    .header img {
-      width: 120px;
-      height: auto;
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-
-    nav {
-      font-size: 1.2em;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 1em;
-      text-decoration: none;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
+    .header img { width: 120px; height: auto; }
+    .header h1 { margin: 0; font-size: 2.5em; }
+    nav { font-size: 1.2em; }
+    nav a { color: white; margin: 0 1em; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
     .hero {
       display: flex;
       align-items: center;
@@ -84,39 +64,20 @@
       background-color: var(--bg-light);
       flex-wrap: wrap;
     }
+    body.dark-mode .hero { background-color: var(--bg-dark); }
+    .hero img { width: 120px; height: auto; }
+    .hero h1 { margin: 0; }
 
-    body.dark-mode .hero {
-      background-color: var(--bg-dark);
-    }
-
-    .hero img {
-      width: 120px;
-      height: auto;
-    }
-
-    .hero h1 {
-      margin: 0;
-    }
-
-    .container {
-      flex-grow: 1;
-      max-width: auto;
-      margin: 2em auto;
-      padding: 0 20px;
-    }
-
+    /* ---- cards ---- */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 32px;
       list-style: none;
       padding: 0;
+      margin: 0;
     }
-
-    .cards__item {
-      height: 400px;
-    }
-
+    .cards__item { height: 400px; }
     .card {
       position: relative;
       display: flex;
@@ -124,48 +85,33 @@
       justify-content: center;
       background-image: linear-gradient(45deg, #5ac8fa, #007aff);
     }
-
     .card__frame {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
     }
-
-    .card__picture {
-      margin-bottom: 12px;
-      filter: invert(1);
-    }
-
+    .card__picture { margin-bottom: 12px; filter: invert(1); }
     .card__title {
       margin: 0;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-
     .card__overlay {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 52px;
-      height: 52px;
+      bottom: 20px; right: 20px;
+      display: flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px;
       background-image: linear-gradient(45deg, #5ac8fa, #007aff);
       border-radius: 50%;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       transition: 0.5s;
       cursor: pointer;
     }
-
     .card__overlay::before {
       content: "Info";
       font-size: 12px;
@@ -174,23 +120,16 @@
       letter-spacing: 0.02em;
       color: #000000;
     }
-
     .card__overlay:hover,
     .card__overlay:focus {
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
+      bottom: 0; right: 0;
+      width: 100%; height: 100%;
       box-shadow: none;
       border-radius: 0;
       opacity: 0.9;
     }
-
     .card__overlay:hover::before,
-    .card__overlay:focus::before {
-      content: none;
-    }
-
+    .card__overlay:focus::before { content: none; }
     .card__content {
       z-index: 1;
       padding: 20px;
@@ -202,18 +141,13 @@
       transition: 0s;
       color: white;
     }
-
     .card__overlay:hover ~ .card__content,
     .card__overlay:focus ~ .card__content {
       opacity: 1;
       visibility: visible;
       transition: 0.2s 0.3s;
     }
-
-    .card__content h2 {
-      margin: 0 0 16px;
-    }
-
+    .card__content h2 { margin: 0 0 16px; }
     footer {
       background-color: #4A90E2;
       color: white;
@@ -222,104 +156,58 @@
       font-size: 14px;
       margin-top: auto;
     }
+    body.dark-mode footer { background-color: #111; color: #ccc; }
+    body.dark-mode footer a { color: #6fe87c !important; }
+    .dark-toggle { cursor: pointer; margin-left: 1em; }
+    .dark-toggle:hover { text-decoration: underline; }
 
-    body.dark-mode footer {
-      background-color: #111;
-      color: #ccc;
-    }
+    body.dark-mode .card { background-image: linear-gradient(45deg, #333, #222); }
+    body.dark-mode .card__title { color: #fff; }
+    body.dark-mode .card__content { color: #fff; }
+    body.dark-mode .card__overlay::before { color: #000; }
+    body.dark-mode .card__overlay { background-image: linear-gradient(45deg, #555, #333); }
+    body.dark-mode .card__overlay::before { color: #ffffff; }
+    body.dark-mode nav a:hover { color: #86d3ff !important; }
 
-    body.dark-mode footer a {
-      color: #6fe87c !important;
-    }
-
-    .dark-toggle {
+    #darkModeToggle {
+      background: none;
+      border: none;
+      color: white;
       cursor: pointer;
+      font-size: 1em;
       margin-left: 1em;
+      text-decoration: none;
+      padding: 0;
+      font-family: inherit;
+      transition: color 0.3s ease;
     }
-
-    .dark-toggle:hover {
+    #darkModeToggle:hover {
       text-decoration: underline;
+      color: var(--link-hover);
     }
-    body.dark-mode .card {
-  background-image: linear-gradient(45deg, #333, #222);
+    body.dark-mode #darkModeToggle {
+      color: var(--text-color) !important;
+    }
+    body.dark-mode #darkModeToggle:hover {
+      text-decoration: underline !important;
+      color: var(--link-hover) !important;
+    }
+    .site-logo { width: 120px; height: auto; transition: filter 0.3s ease; }
+    body:not(.dark-mode) .site-logo { filter: none; }
+    body.dark-mode .site-logo { filter: brightness(0) invert(1); }
+    .navbar-toggler-icon { filter: invert(1); }
+
+.cards {
+  margin-top: 40px; /* 👈 distanza di 40px dalla navbar */
 }
 
-body.dark-mode .card__title {
-  color: #fff;
-}
-
-body.dark-mode .card__content {
-  color: #fff;
-}
-
-body.dark-mode .card__overlay::before {
-  color: #000;
-}
-
-body.dark-mode .card__overlay {
-  background-image: linear-gradient(45deg, #555, #333);
-}
-
-body.dark-mode .card__overlay::before {
-  color: #ffffff;
-}
-body.dark-mode nav a:hover {
-  color: #86d3ff !important;
-}
-
-/* Base toggle button */
-#darkModeToggle {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 1em;
-  margin-left: 1em;
-  text-decoration: none;
-  padding: 0;
-  font-family: inherit;
-  transition: color 0.3s ease;
-}
-
-/* Light mode hover */
-#darkModeToggle:hover {
-  text-decoration: underline;
-  color: var(--link-hover);
-}
-
-/* Dark mode base */
-body.dark-mode #darkModeToggle {
-  color: var(--text-color) !important;
-}
-
-/* Dark mode hover */
-body.dark-mode #darkModeToggle:hover {
-  text-decoration: underline !important;
-  color: var(--link-hover) !important;
-}
-.site-logo {
-  width: 120px;
-  height: auto;
-  transition: filter 0.3s ease;
-}
-
-/* Niente filtro in modalità normale */
-body:not(.dark-mode) .site-logo {
-  filter: none;
-}
-
-/* Filtro per trasformare il colore #3f48cc in bianco */
-body.dark-mode .site-logo {
-  filter: brightness(0) invert(1);
-}
-
-</style>
+  </style>
 </head>
 <body>
 
   <!-- Header con logo e intro -->
   <section class="hero">
-   <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo"></a>
+    <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo"></a>
     <div>
       <h1>I nostri servizi</h1>
       <p>Offriamo assistenza fiscale, pratiche 730, ISEE, successioni e molto altro.</p>
@@ -327,44 +215,35 @@ body.dark-mode .site-logo {
   </section>
 
   <!-- Navbar -->
-  <header class="header">
-    <a href="index.html" style="text-decoration: none; color: inherit;">
-      <div style="font-size: 1.4em; font-weight: bold; cursor: pointer;">
-        CAF Cocciano
+  <nav class="navbar navbar-expand-lg" style="background-color: var(--header-bg);">
+    <div class="container-fluid" style=">
+      <a class="navbar-brand text-white fw-bold" href="index.html">CAF Cocciano</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="chi-siamo.html">Chi Siamo</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="servizi.html">Servizi</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="contatti.html">Contatti</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="faq.html">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="docs-necessari.html">Documenti Necessari</a></li>
+          <li class="nav-item d-flex align-items-center">
+            <button id="darkModeToggle" class="btn btn-sm btn-outline-light d-flex align-items-center" type="button">
+              <i id="modeIcon" class="bi bi-moon-fill me-1"></i>
+              <span id="modeText">Light Mode</span>
+            </button>
+          </li>
+        </ul>
       </div>
-    </a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="chi-siamo.html">Chi Siamo</a>
-      <a href="servizi.html">Servizi</a>
-      <a href="contatti.html">Contatti</a>
-      <a href="faq.html">FAQ</a>
-      <a href="docs-necessari.html">Documenti Necessari</a>
-      <button id="darkModeToggle" aria-label="Toggle dark mode"style="background:none; border:none; color:white; cursor:pointer; font-size:1em; margin-left:1em;"">
-          <span id="modeIcon">🌙</span><span id="modeText">Dark Mode</span>
-        </button>
-    </nav>
-  </header>
-
-   <!-- Sezione Card -->
-  <div class="container">
-     <!-- Inserimento delle 18 card -->
-<ul class="cards">
-  <!-- 730 / Redditi -->
-  <li class="card cards__item">
-    <div class="card__frame">
-      <div class="card__picture">
-        <img src="Service-icons/730.png" alt="730 Dichiarazione" width="120">
-      </div>
-      <h2 class="card__title">730 / Redditi</h2>
     </div>
-    <div class="card__overlay"></div>
-    <div class="card__content">
-      <h2>730 / Dichiarazione dei Redditi</h2>
-      <p>Calcolo e invio della dichiarazione dei redditi.<br><strong>Serve:</strong> Carta d’identità, codice fiscale, CU, spese mediche/scolastiche/mutuo.</p>
-    </div>
-  </li>
+  </nav>
 
+  <!-- Sezione Card -->
+  <div class="container-fluid px-4">
+    <ul class="cards">
   <!-- ISEE -->
   <li class="card cards__item">
     <div class="card__frame">
@@ -620,9 +499,6 @@ body.dark-mode .site-logo {
     </div>
   </li>
 </ul>
-
-
-
     </ul>
   </div>
 
@@ -643,42 +519,38 @@ body.dark-mode .site-logo {
     </div>
   </footer>
 
-<script>
-  function applyDarkModePreference() {
-    const isDark = localStorage.getItem('darkMode') === 'true';
-    const body = document.body;
-    const modeIcon = document.getElementById('modeIcon');
-    const modeText = document.getElementById('modeText');
+  <script>
+    function applyDarkModePreference() {
+      const isDark = localStorage.getItem('darkMode') === 'true';
+      const body = document.body;
+      const modeIcon = document.getElementById('modeIcon');
+      const modeText = document.getElementById('modeText');
 
-    if (isDark) {
-      body.classList.add('dark-mode');
-      if (modeIcon) modeIcon.textContent = '☀️';
-      if (modeText) modeText.textContent = 'Light Mode';
-    } else {
-      body.classList.remove('dark-mode');
-      if (modeIcon) modeIcon.textContent = '🌙';
-      if (modeText) modeText.textContent = 'Dark Mode';
+      if (isDark) {
+        body.classList.add('dark-mode');
+        if (modeIcon) modeIcon.className = 'bi bi-sun-fill me-1';
+        if (modeText) modeText.textContent = 'Light Mode';
+      } else {
+        body.classList.remove('dark-mode');
+        if (modeIcon) modeIcon.className = 'bi bi-moon-fill me-1';
+        if (modeText) modeText.textContent = 'Dark Mode';
+      }
     }
-  }
-
-  function toggleDarkMode() {
-    const body = document.body;
-    const isDark = body.classList.toggle('dark-mode');
-    localStorage.setItem('darkMode', isDark);
-
-    const modeIcon = document.getElementById('modeIcon');
-    const modeText = document.getElementById('modeText');
-    if (modeIcon) modeIcon.textContent = isDark ? '☀️' : '🌙';
-    if (modeText) modeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    applyDarkModePreference();
-    const toggle = document.getElementById('darkModeToggle');
-    if (toggle) toggle.addEventListener('click', toggleDarkMode);
-  });
-</script>
-
-
+    function toggleDarkMode() {
+      const body = document.body;
+      const isDark = body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', isDark);
+      const modeIcon = document.getElementById('modeIcon');
+      const modeText = document.getElementById('modeText');
+      if (modeIcon) modeIcon.className = isDark ? 'bi bi-sun-fill me-1' : 'bi bi-moon-fill me-1';
+      if (modeText) modeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      applyDarkModePreference();
+      const toggle = document.getElementById('darkModeToggle');
+      if (toggle) toggle.addEventListener('click', toggleDarkMode);
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
