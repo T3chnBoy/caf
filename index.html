@@ -82,26 +82,30 @@
 
     /* Hero section */
 .hero {
-  height: 67vh;
-  padding: 5vh 2vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  background-size: cover;
+  background-position: center center; /* centra di default */
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 67vh; /* altezza iniziale */
+  padding: 8em 2em;
   text-align: center;
   color: white;
-  position: relative;
-  z-index: 0;
-  background-size: cover; /* default */
-  background-position: center center;
-  transition: background-position 0.3s ease;
 }
-/* Per schermi piccoli */
-@media (max-width: 768px) {
+
+/* su schermi medi riduciamo un po’ l’altezza per evitare di tagliare troppo */
+@media (max-width: 992px) {
   .hero {
-    background-size: contain; /* fa entrare tutta l'immagine */
-    background-repeat: no-repeat;
-    background-position: top center; /* mostra la parte superiore */
+    min-height: 50vh;
+    background-position: center top; /* mostra un po’ più la parte alta */
+  }
+}
+
+/* su schermi piccoli adattiamo ancora */
+@media (max-width: 576px) {
+  .hero {
+    min-height: 40vh; 
+    background-position: 50% 20%; /* sposta leggermente verso l’alto */
   }
 }
 
