@@ -648,6 +648,53 @@ body.dark-mode .site-logo {
 .navbar-toggler-icon {
   filter: invert(1);
 }
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo a sinistra, testo a destra */
+  padding: 2em;
+  background-color: var(--main-bg);
+  gap: 2em;
+  flex-wrap: nowrap; /* non andare mai sotto */
+  min-width: 0; /* per prevenire overflow */
+}
+
+.header-top .site-logo {
+  flex-shrink: 0; /* il logo non si restringe mai troppo */
+  max-width: 120px; /* dimensione massima */
+  height: auto;
+}
+
+.header-top .header-text {
+  flex: 1;
+  min-width: 0;
+  text-align: right; /* scritte a destra */
+}
+
+.header-top .header-text h1,
+.header-top .header-text p {
+  margin: 0;
+  color: var(--text-color);
+  overflow-wrap: break-word; /* spezza il testo se serve */
+}
+
+/* se vuoi che anche su schermi piccoli rimanga affiancato: */
+@media (max-width: 500px) {
+  .header-top {
+    gap: 1em;
+    padding: 1em;
+  }
+  .header-top .site-logo {
+    max-width: 80px;
+  }
+  .header-top .header-text h1 {
+    font-size: 1.2em;
+  }
+  .header-top .header-text p {
+    font-size: 0.9em;
+  }
+}
+
 
 </style>
 
@@ -655,12 +702,12 @@ body.dark-mode .site-logo {
 <body>
 
   <!-- Header con logo e intro -->
-  <section style="display: flex; align-items: center; gap: 2em; padding: 2em; background-color: var(--main-bg); flex-wrap: wrap;">
-   <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo"></a>
-      <h1>FAQ</h1>
-      <p>Consulta le domande frequenti (Frequently Asked Questions).</p>
-    </div>
-  </section>
+  <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo"></a>
+  <div class="header-text">
+    <h1>Benvenuto al CAF Cocciano</h1>
+    <p>Offriamo assistenza fiscale, pratiche 730, ISEE, successioni e molto altro.</p>
+  </div>
+</section>
 
   <!-- Navbar -->
  <nav class="navbar navbar-expand-lg" style="background-color: var(--header-bg);">
