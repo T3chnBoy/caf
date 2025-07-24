@@ -393,20 +393,17 @@ body.dark-mode .site-logo {
 
 /* se vuoi che anche su schermi piccoli rimanga affiancato: */
 @media (max-width: 500px) {
-  .header-top {
-    gap: 1em;
-    padding: 1em;
-  }
-  .header-top .site-logo {
-    max-width: 80px;
-  }
-  .header-top .header-text h1 {
-    font-size: 1.2em;
-  }
-  .header-top .header-text p {
-    font-size: 0.9em;
+  .social-icons a {
+    width: 60px;       /* mantiene cerchio più piccolo */
+    height: 60px;      /* altezza = larghezza = cerchio */
+    font-size: 28px;   /* ridimensiona l’icona */
+    line-height: normal; /* rimuove eventuale linea che schiaccia */
+    display: flex;           /* centra icona */
+    justify-content: center;
+    align-items: center;
   }
 }
+
 
   </style>
 </head>
