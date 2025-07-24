@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contatti - CAF Cocciano</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
   <style>
     :root {
@@ -76,19 +79,18 @@
       margin-left: 1em;
     }
 
-.contact-container {
-  position: relative;
-  background-image: url('background-contactus.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 3em;
-display: block;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* << aggiungi questa riga */
-}
-
+    .contact-container {
+      position: relative;
+      background-image: url('background-contactus.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 1.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: auto; 
+    }
 
     .contact-container::before {
       content: '';
@@ -107,7 +109,7 @@ display: block;
     .contact-form {
       position: relative;
       background-color: var(--card-bg);
-      padding: 2em;
+      padding: 1.2em;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       width: 100%;
@@ -274,17 +276,6 @@ body.dark-mode #darkModeToggle:hover {
   color: var(--link-hover) !important;
 }
 
-.site-logo {
-  width: 120px;
-  height: auto;
-  transition: filter 0.3s ease;
-}
-
-/* Niente filtro in modalità normale */
-body:not(.dark-mode) .site-logo {
-  filter: none;
-}
-
 /* Filtro per trasformare il colore #3f48cc in bianco */
 body.dark-mode .site-logo {
   filter: brightness(0) invert(1);
@@ -357,13 +348,17 @@ body.dark-mode .site-logo {
   background: #25D366;
 }
 
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
   </style>
 </head>
 
 <body>
   <!-- Intro Section -->
   <section class="intro">
-   <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo"></a>
+    <a href="index.html"><img src="logo.png" alt="Logo CAF" class="site-logo" style="width: 120px; height: auto;"></a>
     <div>
       <h1 style="margin: 0;">Conttataci</h1>
       <p style="margin: 0.5em 0 1em;">Per qualsiasi informazione o per fissare un appuntamento, compila il modulo sottostante o scrivici direttamente.</p>
@@ -371,21 +366,31 @@ body.dark-mode .site-logo {
   </section>
 
   <!-- Navbar -->
-  <header style="background: var(--header-bg); padding: 1em 2em; display: flex; justify-content: space-between; align-items: center; color: white;">
-    <a href="index.html" style="text-decoration: none; color: inherit;">
-      <div style="font-size: 1.4em; font-weight: bold; cursor: pointer;">CAF Cocciano</div>
-    </a>
-    <nav style="display: flex; align-items: center;">
-      <a href="index.html">Home</a>
-      <a href="chi-siamo.html">Chi Siamo</a>
-      <a href="servizi.html">Servizi</a>
-      <a href="contatti.html">Contatti</a>
-      <a href="faq.html">FAQ</a>
-      <a href="docs-necessari.html">Documenti Necessari</a>
-      <button id="darkModeToggle" aria-label="Toggle dark mode"style="background:none; border:none; color:white; cursor:pointer; font-size:1em; margin-left:1em;"">
-          <span id="modeIcon">🌙</span><span id="modeText">Dark Mode</span>
-        </button>
-    </nav>
+<nav class="navbar navbar-expand-lg" style="background-color: var(--header-bg);">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white fw-bold" href="index.html">CAF Cocciano</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="chi-siamo.html">Chi Siamo</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="servizi.html">Servizi</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="contatti.html">Contatti</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="docs-necessari.html">Documenti Necessari</a></li>
+        <li class="nav-item d-flex align-items-center">
+		<button id="darkModeToggle" class="btn btn-sm btn-outline-light d-flex align-items-center" type="button">
+		  <i id="modeIcon" class="bi bi-moon-fill me-1"></i>
+  		    <span id="modeText">Light Mode</span>
+	    	</button>
+          </button>
+        </li>
+    </div>
+  </div>
+</nav>
 
   </header>
 
@@ -443,6 +448,8 @@ body.dark-mode .site-logo {
     </div>
   </footer>
 
+<!-- Bootstrap JS bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   function applyDarkModePreference() {
     const isDark = localStorage.getItem('darkMode') === 'true';
@@ -452,11 +459,11 @@ body.dark-mode .site-logo {
 
     if (isDark) {
       body.classList.add('dark-mode');
-      if (modeIcon) modeIcon.textContent = '☀️';
+      if (modeIcon) modeIcon.className = 'bi bi-sun-fill me-1'; // icona sole
       if (modeText) modeText.textContent = 'Light Mode';
     } else {
       body.classList.remove('dark-mode');
-      if (modeIcon) modeIcon.textContent = '🌙';
+      if (modeIcon) modeIcon.className = 'bi bi-moon-fill me-1'; // icona luna
       if (modeText) modeText.textContent = 'Dark Mode';
     }
   }
@@ -468,7 +475,7 @@ body.dark-mode .site-logo {
 
     const modeIcon = document.getElementById('modeIcon');
     const modeText = document.getElementById('modeText');
-    if (modeIcon) modeIcon.textContent = isDark ? '☀️' : '🌙';
+    if (modeIcon) modeIcon.className = isDark ? 'bi bi-sun-fill me-1' : 'bi bi-moon-fill me-1';
     if (modeText) modeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
   }
 
