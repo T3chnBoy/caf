@@ -162,30 +162,48 @@
 
 
     /* Slider */
-    .slider-container {
-      overflow: hidden;
-      width: 100%;
-      background: #f1f1f1;
-    }
+.slider-container {
+  overflow: hidden; /* niente scroll visibile */
+  width: 100%;
+  background: var(--section-bg);
+}
 
-    .slider-track {
-      display: flex;
-      animation: scroll 15s linear infinite;
-    }
+.slider-track {
+  display: flex;
+  gap: 1em;
+  min-width: max-content; /* larghezza al contenuto */
+  animation: scroll 15s linear infinite;
+}
 
-    .slider-item {
-      flex: 0 0 auto;
-      padding: 2em;
-      text-align: center;
-      min-width: 200px;
-      font-weight: bold;
-      color: #0073aa;
-    }
+/* Riduci durata animazione su schermi piccoli per velocità maggiore */
+@media (max-width: 768px) {
+  .slider-track {
+    animation-duration: 8s;
+  }
+}
 
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
+.slider-item {
+  flex: 0 0 auto;
+  padding: 1em 2em;
+  text-align: center;
+  font-weight: bold;
+  color: #0073aa;
+  font-size: clamp(14px, 4vw, 18px);
+  min-width: 120px;
+  max-width: 180px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%));
+  }
+}
+
 
     .news-article {
       background: var(--card-bg);
