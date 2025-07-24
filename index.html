@@ -81,16 +81,85 @@
     }
 
     /* Hero section */
-    .hero {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 8em 2em;   /* aumenta il padding verticale */
-      text-align: center;
-      color: white;
-      height: 67vh;       /* aumenta l’altezza, es. 67% dello schermo */
+.hero {
+  height: 67vh;
+  padding: 5vh 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 0;
 }
-    }
+
+.hero h1 {
+  font-size: clamp(24px, 6vw, 48px);
+  margin-bottom: 0.5em;
+}
+
+.hero p {
+  font-size: clamp(14px, 3vw, 24px);
+  margin-bottom: 1em;
+}
+
+.hero .btn {
+  font-size: clamp(12px, 2vw, 20px);
+  padding: 0.7em 1.2em;
+  margin: 0 0.5em;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero a.servizi {
+  background-color: white !important;
+  color: #0073aa !important;
+  border: none !important;
+}
+
+.hero a.prenota {
+  background-color: #0073aa !important;
+  color: white !important;
+  border: none !important;
+}
+
+.hero .btn:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+/* Contenitore bottoni per metterli orizzontali e centrati */
+.hero .btn-container {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+
+/* Sezione orari dentro la hero */
+.hero .orari-section {
+  padding: 2em 1em 0 1em;
+  max-width: 600px;
+  margin: 0 auto;
+  color: white;
+}
+
+.hero .orari-section h2 {
+  font-size: clamp(24px, 5vw, 40px);
+  margin-bottom: 0.5em;
+}
+
+.hero .orari-section p {
+  font-size: clamp(14px, 3vw, 22px);
+  margin-bottom: 0.8em;
+}
+
+
 
     /* Slider */
     .slider-container {
@@ -344,30 +413,23 @@ body.dark-mode .site-logo {
 
 
   <!-- Hero Section -->
-  <section class="hero">
-    <h1 style="font-size: 2.5em; margin-bottom: 0.5em;">
-      <span class="highlight">CAF Cocciano</span>
-    </h1>
-    <p style="font-size: 1.2em; margin-bottom: 1em;">
-      <span class="highlight">Il tuo punto di riferimento per assistenza fiscale</span>
-    </p>
-    <a href="servizi.html" class="btn servizi" style="background : white; color: #0073aa; padding: 0.7em 1.2em; text-decoration: none; margin: 0 0.5em; border-radius: 5px;">Scopri i servizi</a>
-    <a href="contatti.html" class="btn prenota" style="background: #0073aa; color: white; padding: 0.7em 1.2em; text-decoration: none; margin: 0 0.5em; border-radius: 5px;">Prenota ora</a>
-	
-	<!-- Sezione Orari -->
-		<section style="text-align: center; padding: 3em 1em;">
-   		 <h2 style="font-size: 2.5em; margin-bottom: 0.5em;">
-  	  <span class="highlight">I nostri orari</span>
-  	</h2>
-    	<p style="font-size: 1.2em; margin-bottom: 1em;">
-   		 <span class="highlight">Lunedì - Venerdì: 9:00 - 12:30 / 15:00 - 18:00</span>
-  	</p>
-    	<p style="font-size: 1.2em; margin-bottom: 1em;">
- 	   <span class="highlight">Sabato - Domenica: Chiuso</span>
-  	</p>
+<section class="hero">
+  <h1><span class="highlight">CAF Cocciano</span></h1>
+  <p><span class="highlight">Il tuo punto di riferimento per assistenza fiscale</span></p>
+  <div class="btn-container">
+    <a href="servizi.html" class="btn servizi">Scopri i servizi</a>
+    <a href="contatti.html" class="btn prenota">Prenota ora</a>
+  </div>
+  
+  <!-- Sezione Orari dentro hero -->
+  <section class="orari-section" aria-label="Orari di apertura">
+    <h2><span class="highlight">I nostri orari</span></h2>
+    <p><span class="highlight">Lunedì - Venerdì: 9:00 - 12:30 / 15:00 - 18:00</span></p>
+    <p><span class="highlight">Sabato - Domenica: Chiuso</span></p>
+  </section>
 </section>
 
-  </section>
+
 
   <!-- Slider contenuti -->
   <div class="slider-container">
