@@ -147,130 +147,86 @@
     }
 
 /* TEAM SECTION */
-    .team-section {
-      max-width:1200px;
-      margin:3em auto;
-      padding:0 1em 3em 1em;
-      text-align:center;
-    }
-    .team-section h2 {
-      color:var(--link-color);
-      border-bottom:3px solid var(--link-color);
-      display:inline-block;
-      padding-bottom:0.3em;
-      margin-bottom:1em;
-    }
-    .team-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
-      gap:2em;
-      margin-top:2em;
-    }
-    
-    /* FOOTER */
-    footer {
-      background-color: #4A90E2;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-      font-size: 14px;
-    }
-    body.dark-mode footer {
-      background-color: #111;
-      color: #ccc;
-    }
-    body.dark-mode footer a {
-      color: #6fe87c !important;
-    }
-
-.container .card .icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #2c73df;
-
+/* TEAM SECTION */
+.team-section {
+  max-width:1200px;
+  margin:3em auto;
+  padding:0 1em 3em 1em;
+  text-align:center;
+}
+.team-section h2 {
+  color:var(--link-color);
+  border-bottom:3px solid var(--link-color);
+  display:inline-block;
+  padding-bottom:0.3em;
+  margin-bottom:1em;
+}
+.team-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
+  gap:2em;
+  margin-top:2em;
+}
+.team-card {
+  background-color: var(--card-bg);
+  border-radius:12px;
+  padding:1.5em;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+.team-photo {
+  width:100%;
+  height:150px;
+  background:#ddd;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:1em;
+  font-weight:bold;
+  color:#555;
+}
+.team-card h3 {
+  margin:0.5em 0 0.2em;
+  font-size:1.2em;
+  color:var(--text-color);
+}
+.team-card p {
+  margin:0;
+  font-size:1em;
+  color:#666;
+}
+body.dark-mode .team-card {
+  background-color:#222;
+}
+body.dark-mode .team-card p {
+  color:#aaa;
 }
 
-
-.container .card .icon .fa {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 80px;
-    color: #fff;
-
+.team-photo {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;  /* rende il box quadrato; se vuoi rettangolare cambia il valore */
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #ddd;
 }
 
-.container .card .slide {
-    width: 300px;
-    height: 200px;
-    transition: 0.5s;
-
+.team-photo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fa in modo che l’immagine riempia il box, tagliando i bordi se serve, ma senza distorsione */
+  object-position: center; /* centra l’immagine, utile quando viene tagliata */
 }
 
-.container .card .slide.slide1 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    transition: .7s;
-    transform: translateY(100px);
-
-}
-
-.container .card:hover .slide.slide1{
-    transform: translateY(0px);
-}
-
-.container .card .slide.slide2 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-imems: center;
-    padding: 20px;
-    box-sizing: border-box;
-    transition: .8s;
-    transform: translateY(-100px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-.container .card:hover .slide.slide2{
-    transform: translateY(0);
-}
-
-.container .card .slide.slide2::after{
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 4px;
-    bottom: 15px;
-    left: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #2c73df;
-
-}
-
-.container .card .slide.slide2 .content p {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    color: #414141;
-
-}
-
-.container .card .slide.slide2 .content h3 {
-    margin: 0 0 10px 0;
-    padding: 0;
-    font-size: 24px;
-    text-align: center;
-    color: #414141;
-
-} 
 
 /* 🌙 DARK MODE */
 body.dark-mode {
@@ -294,39 +250,6 @@ body.dark-mode .container .card .slide.slide2 {
 body.dark-mode .container .card .slide.slide2::after {
     background: #2c73df; /* mantiene il blu */
 }
-
-/* FOOTER */
-footer {
-  background-color: var(--header-bg);
-  color: white;
-  text-align: center;
-  padding: 2em 1em;
-  margin-top: 3em;
-}
-
-footer a {
-  color: var(--link-color);
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-  color: var(--link-hover);
-}
-
-body.dark-mode footer {
-  background-color: #1e1e1e;
-  color: #ccc;
-}
-
-body.dark-mode footer a {
-  color: #4db8ff;
-}
-
-body.dark-mode footer a:hover {
-  color: #86d3ff;
-}
-
 
 
 /* ✅ Stile del box immagine (normale) */
@@ -424,6 +347,53 @@ body.dark-mode .site-logo {
   }
 }
 
+/* FOOTER */
+footer {
+  background-color: var(--header-bg);
+  color: white;
+  text-align: center;
+  padding: 2em 1em;
+  margin-top: 3em;
+}
+
+footer a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: var(--link-hover);
+}
+
+body.dark-mode footer {
+  background-color: #1e1e1e;
+  color: #ccc;
+}
+
+body.dark-mode footer a {
+  color: #4db8ff;
+}
+
+body.dark-mode footer a:hover {
+  color: #86d3ff;
+}
+
+    /* Footer styles */
+    footer {
+      background-color: #4A90E2;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+    body.dark-mode footer {
+      background-color: #111;
+      color: #ccc;
+    }
+    body.dark-mode footer a {
+      color: #6fe87c !important;
+    }
 
   </style>
 </head>
@@ -550,64 +520,62 @@ Nasciamo con l'obiettivo di <Strong>semplificare la vita dei cittadini</Strong>,
   </section>
 
 <!-- TEAM -->
-<section class="team-section" style="background-color: var(--main-bg);">
+<section class="team-section">
   <h2>Il Nostro Team</h2>
   <p>Un gruppo di esperti al tuo fianco:</p>
-
-  <div class="container">
-    <div class="team-grid" style="display: flex; gap: 2em; justify-content: center; flex-wrap: wrap;">
-      <div class="card">
-        <div class="slide slide1">
-          <div class="content">
-            <div class="icon">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="slide slide2">
-          <div class="content">
-            <h3>Hello there!</h3>
-            <p>Trust yourself and keep going.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="slide slide1">
-          <div class="content">
-            <div class="icon">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="slide slide2">
-          <div class="content">
-            <h3>Hello there!</h3>
-            <p>Trust yourself and keep going.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="slide slide1">
-          <div class="content">
-            <div class="icon">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="slide slide2">
-          <div class="content">
-            <h3>Hello there!</h3>
-            <p>Trust yourself and keep going.</p>
-          </div>
-        </div>
-      </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo"><img src="team/Antonella.jpg" alt="Antonella Biagini"></div>
+      <h3>Antonella Biagini</h3>
+      <p>Avvocato</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><img src="team/Alessandro.jpg" alt="Alessandro Artuso"></div>
+      <h3>Alessandro Artuso</h3>
+      <p>Avvocato</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">FOTO</div>
+      <h3>Ciampolillo Romano</h3>
+      <p>Rinnovo Patenti</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><img src="team/Emiliano.jpg" alt="Emiliano Ceglie"></div>
+      <h3>Emiliano Ceglie</h3>
+      <p>Geometra</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">FOTO</div>
+      <h3>Giovanni Esposito</h3>
+      <p>Consulente Previdenziale</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">FOTO</div>
+      <h3>Chiara Romano</h3>
+      <p>Specialista Pratiche CAF</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">FOTO</div>
+      <h3>Francesco De Luca</h3>
+      <p>Esperto Contabilità</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">FOTO</div>
+      <h3>Elena Galli</h3>
+      <p>Consulente Legale</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">FOTO</div>
+      <h3>Marco Conti</h3>
+      <p>Responsabile Successioni</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo">FOTO</div>
+      <h3>Sara Moretti</h3>
+      <p>Front Office</p>
     </div>
   </div>
 </section>
-
-
 
   <!-- FOOTER -->
   <footer>
